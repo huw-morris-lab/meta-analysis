@@ -1,5 +1,5 @@
 # meta-analysis
-Meta-analysis steps for GWAS
+Steps to meta-analyse GWAS results from multiple studies.
 
 Date: May 2020
 
