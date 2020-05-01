@@ -32,6 +32,8 @@ Read data into R to calculate lambda value, annotate with rsIDs, and export data
 
 Check https://genome.sph.umich.edu/wiki/METAL_Documentation for the correct format of the input files for METAL.
 
+Recommend keeping track of how many SNPs you started with and how many have been removed at each step, to make sure everything looks sensible and you are not losing too many SNPs.
+
 ```
 R
 library(dplyr)
@@ -114,7 +116,6 @@ rsids <- fread("/data/kronos/mtan/HRC_rs_ids_GRCh37.txt")
 data_split_noindels_freq_rsids <- data_split_noindels_freq %>%
 	mutate(chrbp = paste(chr,bp, sep =":")) %>%
 	inner_join(rsids, by = "chrbp")
-#5464833 SNPs that have rsIDs
 
 #Check allele matches
 data_split_noindels_freq_rsids <- data_split_noindels_freq_rsids %>%
