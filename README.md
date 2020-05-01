@@ -36,7 +36,8 @@ Then make your METAL script. Run your script using
 /data/kronos/mtan/software/metal/generic-metal/metal metaanalysis_script.txt
 ```
 
-SCRIPT - following format recommended https://genome.sph.umich.edu/wiki/METAL_Documentation
+SCRIPT - following format recommended https://genome.sph.umich.edu/wiki/METAL_Documentation.
+Saved as metaanalysis_script.txt
 ```
 SCHEME  STDERR
 AVERAGEFREQ ON
@@ -88,6 +89,8 @@ STDERR se
 PVALUE Pvalue
 WEIGHT N 
 PROCESS STUDY4.tab
+
+# LOAD HOWEVER MANY INPUT FILES YOU HAVE
 
 OUTFILE OUTPUT_META .tbl
 ANALYZE HETEROGENEITY
