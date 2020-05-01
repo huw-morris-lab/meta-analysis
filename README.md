@@ -99,3 +99,47 @@ QUIT
 ```
 
 # 3. Post-analysis filtering
+
+I have followed standard filtering e.g. Iwaki PD Progression GWAS https://onlinelibrary.wiley.com/doi/full/10.1002/mds.27845
+
+
+```
+R
+library(data.table)
+library(dplyr)
+
+#Read in meta analysis results
+data <- fread("OUTPUT_META.tbl")
+
+#Filter out SNPs which are not in all the studies
+#This is up to you whether you set a minimum N of patients that have been analysed
+#I filtered by the number of studies 
+data_filtered <- data %>%
+	filter(HetDf == 3)
+
+#Sort by p value
+data_filtered_sorted <- data_filtered %>%
+	arrange(`P-value`)
+
+#Filter out SNPs with HetPVal < 0.05 (Cochran's Q-test for heterogeneity)
+#Also filter out SNPs with HetISq > 80
+data_filtered_sorted_het <-data_filtered_sorted %>%
+	filter(HetPVal > 0.05) %>%
+	filter(HetISq < 80)
+
+#Check MAF variability - remove variants with MAF variability > 15%
+data_filtered_sorted_het_MAF <- data_filtered_sorted_het %>%
+	mutate(MAF_variability = MaxFreq - MinFreq) %>%
+	filter(MAF_variability <= 0.15)
+
+#Export for FUMA
+export_FUMA <- data_filtered_sorted_het_MAF %>%
+	select(MarkerName, `P-value`, Allele1, Allele2, Effect, StdErr, TotalSampleSize) %>%
+	rename(rsID = MarkerName,
+		pval = `P-value`)
+		
+fwrite(export_FUMA, "metaanalysis_FUMA.txt", quote = F, row.names = F, col.names = T, sep = "\t")
+```
+
+
+Then upload to FUMA to plot results.
