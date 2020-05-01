@@ -154,7 +154,7 @@ export_METAL <- data_split_noindels_freq_rsids_alleleMatch_unique %>%
 		beta = Coeff)
 
 #Export for METAL
-fwrite(export_METAL, "QSBB_survival_mortality_METAL.tab", quote = F, sep = "\t", row.names = F)
+fwrite(export_METAL, "results_METAL.tab", quote = F, sep = "\t", row.names = F)
 
 q()
 n
@@ -162,7 +162,7 @@ n
 
 If your file is too large to upload to FUMA, compress it with gzip.
 ```
-gzip QSBB_survival_mortality_FUMA.txt
+gzip results_FUMA.txt
 ```
 
 
