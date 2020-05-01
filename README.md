@@ -24,5 +24,75 @@ Read the METAL guide https://genome.sph.umich.edu/wiki/METAL_Documentation
 
 # 2. Run meta-analysis in METAL
 
+If you have not already, download the METAL software from http://csg.sph.umich.edu/abecasis/Metal/download/
+
+Downloaded to your local kronos folder. Uuncompress the gz file.
+```
+tar xvzf Linux-metal.tar.gz 
+```
+
+Then make your METAL script. Run your script using
+```
+/data/kronos/mtan/software/metal/generic-metal/metal metaanalysis_script.txt
+```
+
+SCRIPT - following format recommended https://genome.sph.umich.edu/wiki/METAL_Documentation
+```
+SCHEME  STDERR
+AVERAGEFREQ ON
+MINMAXFREQ ON
+CUSTOMVARIABLE TotalSampleSize
+LABEL TotalSampleSize as N 
+
+# LOAD INPUT FILES
+
+# Enable Genomic control correction
+GENOMICCONTROL ON
+
+# === DESCRIBE AND PROCESS THE FIRST INPUT FILE ===
+MARKER rsid
+ALLELE effect_allele noneffect_allele
+FREQ   MAF
+EFFECT beta
+STDERR se
+PVALUE Pvalue
+WEIGHT N 
+PROCESS STUDY1.tab
+
+# === DESCRIBE AND PROCESS THE SECOND INPUT FILE ===
+MARKER rsid
+ALLELE effect_allele noneffect_allele
+FREQ   MAF
+EFFECT beta
+STDERR se
+PVALUE Pvalue
+WEIGHT N 
+PROCESS STUDY2.tab
+
+# === DESCRIBE AND PROCESS THE THIRD INPUT FILE ===
+MARKER rsid
+ALLELE effect_allele noneffect_allele
+FREQ   MAF
+EFFECT beta
+STDERR se
+PVALUE Pvalue
+WEIGHT N 
+PROCESS STUDY3.tab
+
+# === DESCRIBE AND PROCESS THE FOURTH INPUT FILE ===
+MARKER rsid
+ALLELE effect_allele noneffect_allele
+FREQ   MAF
+EFFECT beta
+STDERR se
+PVALUE Pvalue
+WEIGHT N 
+PROCESS STUDY4.tab
+
+OUTFILE OUTPUT_META .tbl
+ANALYZE HETEROGENEITY
+
+QUIT
+```
 
 # 3. Post-analysis filtering
