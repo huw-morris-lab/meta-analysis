@@ -100,7 +100,8 @@ QUIT
 
 # 3. Post-analysis filtering
 
-I have followed standard filtering e.g. Iwaki PD Progression GWAS https://onlinelibrary.wiley.com/doi/full/10.1002/mds.27845
+I have followed standard filtering criteria
+e.g. Iwaki PD Progression GWAS https://onlinelibrary.wiley.com/doi/full/10.1002/mds.27845
 
 
 ```
